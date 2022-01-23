@@ -1,12 +1,13 @@
-package com.example;
+package vec4.betternotes;
 
 import net.runelite.client.config.Config;
 import net.runelite.client.config.ConfigGroup;
 import net.runelite.client.config.ConfigItem;
 
-@ConfigGroup("example")
-public interface ExampleConfig extends Config
+@ConfigGroup("betternotes")
+public interface BetterNotesConfig extends Config
 {
+	/*
 	@ConfigItem(
 		keyName = "greeting",
 		name = "Welcome Greeting",
@@ -16,4 +17,5 @@ public interface ExampleConfig extends Config
 	{
 		return "Hello";
 	}
+	 */
 }
