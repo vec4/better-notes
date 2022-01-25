@@ -9,6 +9,11 @@ import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
+import net.runelite.client.ui.ClientToolbar;
+import net.runelite.client.ui.NavigationButton;
+import net.runelite.client.util.ImageUtil;
+
+import java.awt.image.BufferedImage;
 
 @Slf4j
 @PluginDescriptor(
@@ -16,8 +21,17 @@ import net.runelite.client.plugins.PluginDescriptor;
 )
 public class BetterNotesPlugin extends Plugin
 {
+
+	private static final BufferedImage TOOLBAR_ICON = ImageUtil.loadImageResource(BetterNotesPlugin.class, "toolbar-icon.png");
+
+	private BetterNotesPanel panel;
+	private NavigationButton navButton;
+
 	@Inject
 	private Client client;
+
+	@Inject
+	private ClientToolbar clientToolbar;
 
 	@Inject
 	private BetterNotesConfig config;
@@ -26,6 +40,15 @@ public class BetterNotesPlugin extends Plugin
 	protected void startUp() throws Exception
 	{
 		log.info("Better Notes plugin started!");
+
+		panel = new BetterNotesPanel();
+		navButton = NavigationButton.builder()
+				.icon(TOOLBAR_ICON) // TODO: make a navbar icon (temp image for now)
+				.tooltip("Better Notes")
+				.priority(9)
+				.panel(panel)
+				.build();
+		clientToolbar.addNavigation(navButton);
 	}
 
 	@Override
